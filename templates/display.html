@@ -3,72 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualização de Dados da Playlist</title>
+    <title>Minha Playlist de Músicas</title>
     
-    <!-- Incluindo o Tailwind CSS via CDN para estilização rápida -->
+    <!-- Incluindo o Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Incluindo uma fonte mais moderna (Inter) do Google Fonts -->
+    <!-- Incluindo a fonte 'Inter' do Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Aplicando a fonte 'Inter' como padrão para toda a página */
+        /* Aplicando a fonte 'Inter' como padrão */
         body {
             font-family: 'Inter', sans-serif;
         }
 
-        /* * Estilos customizados para a tabela que é gerada pelo Pandas.
-         * O Python adiciona a classe '.data', então podemos estilizá-la aqui.
-        */
+        /* Estilos customizados para a tabela gerada pelo Pandas */
         .data {
             width: 100%;
-            border-collapse: collapse; /* Remove espaços entre as bordas */
+            border-collapse: collapse;
         }
 
-        /* Estilo do cabeçalho da tabela */
+        /* Estilo do cabeçalho da tabela para o tema escuro */
         .data thead {
-            background-color: #1f2937; /* Cinza escuro */
-            color: #ffffff; /* Texto branco */
+            background-color: rgba(31, 41, 55, 0.5); /* Cinza escuro semi-transparente */
+            color: #d1d5db; /* Texto cinza claro */
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
         }
 
         .data th, .data td {
-            padding: 0.75rem 1rem; /* Espaçamento interno das células */
+            padding: 1rem 1.5rem; /* Mais espaçamento interno */
             text-align: left;
             border-bottom-width: 1px;
-            border-color: #e5e7eb; /* Cor da borda suave */
+            border-color: rgba(75, 85, 99, 0.5); /* Borda cinza mais escura e transparente */
         }
 
-        /* Estilo para as linhas pares (efeito "zebra") */
+        /* Estilo para as linhas (efeito "zebra" sutil) */
         .data tbody tr:nth-child(even) {
-            background-color: #f9fafb; /* Cinza bem claro */
+            background-color: rgba(255, 255, 255, 0.02);
         }
 
         /* Efeito de hover ao passar o mouse sobre uma linha */
         .data tbody tr:hover {
-            background-color: #f3f4f6; /* Cinza um pouco mais escuro */
+            background-color: rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+<!-- Fundo com gradiente temático -->
+<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 min-h-screen flex items-center justify-center p-4">
 
-    <!-- Cartão principal que contém todo o conteúdo -->
-    <div class="container mx-auto bg-white rounded-xl shadow-lg p-6 md:p-8 w-full max-w-6xl">
+    <!-- Cartão "Glassmorphism" que contém o conteúdo -->
+    <div class="container mx-auto bg-gray-800 bg-opacity-50 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-700 p-6 md:p-8 w-full max-w-6xl text-gray-200">
         
-        <!-- Cabeçalho com Ícone e Título -->
+        <!-- Cabeçalho com Título e Subtítulo -->
         <div class="text-center mb-8">
-             <!-- Ícone de Tabela (SVG) -->
-            <svg class="mx-auto h-12 w-12 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125v-1.5c0-.621.504-1.125 1.125-1.125H20.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h17.25m-17.25 0V6.75c0-.621.504-1.125 1.125-1.125h1.5c.621 0 1.125.504 1.125 1.125v11.25m-3 0h3m-3 0V6.75m0 0h17.25m-17.25 0h1.5c.621 0 1.125.504 1.125 1.125v11.25m0 0h14.25m-14.25 0h1.5m-1.5 0V6.75m0 0h.008v.008H4.875V6.75m-1.5 0h1.5V6.75m0 0h.008v.008H4.875V6.75m0 0h.008v.008H4.875V6.75m-1.5 0h1.5V6.75m14.25 0h.008v.008h-.008V6.75m0 0h.008v.008h-.008V6.75m0 0h.008v.008h-.008V6.75m2.25 0h.008v.008h-.008V6.75m0 0h.008v.008h-.008V6.75m0 0h.008v.008h-.008V6.75m-3 0h.008v.008h-.008V6.75m0 0h.008v.008h-.008V6.75m0 0h.008v.008h-.008V6.75" />
-            </svg>
-            <h1 class="text-3xl font-bold text-gray-800 mt-4">Conteúdo do Arquivo CSV</h1>
-            <p class="text-gray-500 mt-1">Dados da playlist visualizados em tempo real.</p>
+            <h1 class="text-4xl font-bold text-white tracking-wider">🎵 Minha Playlist de Músicas 🎵</h1>
+            <p class="text-purple-300 mt-2">Projeto da Prova – Gerado a partir de dados do Azure SQL</p>
         </div>
 
         <!-- Container da tabela com borda e rolagem horizontal em telas pequenas -->
-        <div class="overflow-x-auto rounded-lg border border-gray-200">
+        <div class="overflow-x-auto rounded-lg border border-gray-700">
             <!-- A tabela gerada pelo Flask/Pandas será injetada aqui -->
             {% for table in tables %}
                 {{ table|safe }}
@@ -77,7 +75,7 @@
         
         <!-- Botão de Ação para enviar outro arquivo -->
         <div class="mt-8 text-center">
-            <a href="/" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105 shadow-md">
+            <a href="/" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105 shadow-lg">
                 &larr; Enviar Outro Arquivo
             </a>
         </div>
